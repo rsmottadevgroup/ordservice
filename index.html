@@ -8,7 +8,7 @@
 </head>
 <body>
 <header class="topbar">
-  <div class="brand"><span class="brand-mark">OS</span><div><strong>Gerador de OS</strong><small>Documentos profissionais em PDF</small></div></div>
+  <div class="brand"><img class="brand-logo" src="assets/Logo_rs_r.png" alt="RS Motta"><div><strong>Gerador de OS</strong><small>Documentos profissionais em PDF</small></div></div>
   <div class="top-actions"><button class="btn secondary" id="saveBtn">Salvar dados</button><button class="btn primary" id="pdfBtn">⬇ Gerar PDF</button></div>
 </header>
 <main class="layout">
@@ -82,7 +82,7 @@
   <aside class="preview">
     <div class="preview-head"><div><b>Pré-visualização</b><small>Documento A4 • atualizado automaticamente</small></div><span class="live">● Ao vivo</span></div>
     <div class="paper-wrap"><article class="paper" id="previewPaper">
-      <div class="pdf-header"><div class="pdf-logo" id="previewLogo">SUA<br>LOGO</div><div class="pdf-company"><h2 id="pEmpresa">Sua empresa</h2><p id="pEmpresaInfo">CPF/CNPJ • Telefone • E-mail</p><p id="pEmpresaEndereco"></p></div><div class="os-number"><small>ORDEM DE SERVIÇO</small><strong id="pNumero">OS-0001</strong><span id="pStatus">ABERTA</span></div></div>
+      <div class="pdf-header"><div class="pdf-logo" id="previewLogo"><img src="assets/Logo_rs_r.png" alt="Logo da empresa"></div><div class="pdf-company"><h2 id="pEmpresa">Sua empresa</h2><p id="pEmpresaInfo">CPF/CNPJ • Telefone • E-mail</p><p id="pEmpresaEndereco"></p></div><div class="os-number"><small>ORDEM DE SERVIÇO</small><strong id="pNumero">OS-0001</strong><span id="pStatus">ABERTA</span></div></div>
       <hr>
       <div class="pdf-meta"><div><small>CLIENTE</small><b id="pCliente">Nome do cliente</b><span id="pClienteInfo">Documento • Telefone</span><span id="pClienteEndereco"></span></div><div><small>EMISSÃO</small><b id="pData">—</b><small>PREVISÃO</small><b id="pPrevisao">—</b></div></div>
       <div class="pdf-section"><h3>DETALHES DO ATENDIMENTO</h3><div class="pdf-detail"><small>Tipo / Local</small><p id="pTipo">—</p></div><div class="pdf-detail"><small>Solicitação / Descrição</small><p id="pDescricao">—</p></div><div class="pdf-detail"><small>Diagnóstico / Execução</small><p id="pExecucao">—</p></div><div class="pdf-detail"><small>Observações</small><p id="pObservacoes">—</p></div></div>
@@ -93,8 +93,7 @@
     <p class="preview-note">O PDF será gerado em formato A4. Confira os dados antes de baixar.</p>
   </aside>
 </main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

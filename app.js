@@ -35,17 +35,20 @@ fields.forEach(id=>$(id).addEventListener('input',update));
 function saveData(){const data={};fields.forEach(id=>data[id]=$(id).value);data.logo=logoData;data.items=items();localStorage.setItem('geradorOSData',JSON.stringify(data));alert('Dados salvos neste navegador!');}
 $('saveBtn').onclick=saveData;
 function loadData(){const raw=localStorage.getItem('geradorOSData');if(!raw)return;try{const d=JSON.parse(raw);fields.forEach(id=>{if(d[id]!==undefined)$(id).value=d[id]});logoData=d.logo||'';if(logoData)$('previewLogo').innerHTML=`<img src="${logoData}" alt="Logo">`;$('itemsBody').innerHTML='';(d.items||[]).forEach(x=>addItem(x.desc,x.qty,x.price));update()}catch(e){console.warn(e)}}
-$('clearBtn').onclick=()=>{if(!confirm('Limpar todos os campos e itens?'))return;$('osForm').reset();$('itemsBody').innerHTML='';logoData='';$('previewLogo').textContent='SUA LOGO';$('data').value=today.toISOString().slice(0,10);$('numero').value='OS-'+String(Date.now()).slice(-6);addItem();update()};
+$('clearBtn').onclick=()=>{if(!confirm('Limpar todos os campos e itens?'))return;$('osForm').reset();$('itemsBody').innerHTML='';logoData='';$('previewLogo').innerHTML='<img src="assets/Logo_rs_r.png" alt="Logo da empresa">';$('data').value=today.toISOString().slice(0,10);$('numero').value='OS-'+String(Date.now()).slice(-6);addItem();update()};
 async function generatePDF(){
  if(!$('osForm').reportValidity())return;
  update();const btns=[$('pdfBtn'),$('pdfBtn2')];btns.forEach(b=>{b.disabled=true;b.textContent='Gerando PDF...'});
  try{
-  const {jsPDF}=window.jspdf;const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
-  const paper=$('previewPaper');const canvas=await html2canvas(paper,{scale:2,useCORS:true,backgroundColor:'#ffffff',logging:false});
-  const img=canvas.toDataURL('image/png');const pageW=210,pageH=297;const imgW=pageW,imgH=canvas.height*imgW/canvas.width;
-  let heightLeft=imgH,position=0;doc.addImage(img,'PNG',0,position,imgW,imgH);heightLeft-=pageH;
-  while(heightLeft>0){position=heightLeft-imgH;doc.addPage();doc.addImage(img,'PNG',0,position,imgW,imgH);heightLeft-=pageH;}
-  doc.save(`${(val('numero')||'ordem-servico').replace(/[^\w-]/g,'_')}.pdf`);
+    const filename=`${(val('numero')||'ordem-servico').replace(/[^\w-]/g,'_')}.pdf`;
+    await window.html2pdf().set({
+     filename,
+     margin:0,
+     image:{type:'png',quality:1},
+     html2canvas:{scale:2,useCORS:true,backgroundColor:'#ffffff',logging:false},
+     jsPDF:{orientation:'portrait',unit:'mm',format:'a4'},
+     pagebreak:{mode:['css','legacy'],avoid:['.pdf-header','.pdf-meta','.pdf-detail','.pdf-table tr','.pdf-sums > div','.payline','.accept-text','.signatures','.pdf-footer']}
+    }).from($('previewPaper')).save();
  }catch(err){console.error(err);alert('Não foi possível gerar o PDF. Verifique sua conexão e tente novamente.');}
  finally{btns.forEach((b,i)=>{b.disabled=false;b.innerHTML=i===0?'⬇ Gerar PDF':'Gerar PDF da OS ↗'})}
 }

@@ -4,3 +4,7 @@
 @media(max-width:1100px){.layout{grid-template-columns:1fr}.preview{position:static}.paper{min-height:842px}.four{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:650px){.topbar{padding:12px 16px;height:auto;gap:10px;flex-wrap:wrap}.top-actions{width:100%}.top-actions .btn{flex:1}.layout{padding:18px 12px;gap:20px}.heading h1{font-size:23px}.panel{padding:16px}.two,.three,.four{grid-template-columns:1fr}.paper-wrap{padding:8px}.paper{padding:22px 18px;min-width:320px}.bottom-actions{flex-direction:column}.bottom-actions button{width:100%}.pdf-sums{width:70%}}
 @media print{body{background:#fff}.topbar,.editor,.preview-head,.preview-note{display:none!important}.layout{display:block;padding:0}.preview{position:static}.paper-wrap{background:#fff;padding:0;box-shadow:none}.paper{box-shadow:none;margin:0 auto}}
+.brand-logo{width:42px;height:42px;object-fit:contain;border-radius:8px}
+.pdf-logo img{max-width:100%;max-height:100%;object-fit:contain}
+.pdf-header,.pdf-meta,.pdf-detail,.pdf-table tr,.pdf-sums>div,.payline,.accept-text,.signatures,.pdf-footer{break-inside:avoid;page-break-inside:avoid}
+.pdf-detail p,.accept-text{overflow-wrap:anywhere;word-break:normal}

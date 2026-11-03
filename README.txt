@@ -9,5 +9,6 @@
 ## Observações
 - Aplicação local, sem servidor/backend.
 - O formulário pode salvar os dados no armazenamento local do navegador.
-- A geração do PDF usa jsPDF e html2canvas via CDN; é necessário internet para carregar essas bibliotecas.
+- A geração do PDF usa html2pdf.js via CDN; é necessário internet para carregar a biblioteca.
 - Os dados salvos ficam no navegador/dispositivo em que foram preenchidos.
+- A logo padrão e as imagens do site ficam na pasta `assets/`. A logo da ordem pode ser substituída pelo formulário.
