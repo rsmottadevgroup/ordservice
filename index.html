@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerador de Ordem de Serviço</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">OS</span><div><strong>Gerador de OS</strong><small>Documentos profissionais em PDF</small></div></div>
+  <div class="top-actions"><button class="btn secondary" id="saveBtn">Salvar dados</button><button class="btn primary" id="pdfBtn">⬇ Gerar PDF</button></div>
+</header>
+<main class="layout">
+  <section class="editor">
+    <div class="heading"><div><span class="eyebrow">DOCUMENTO</span><h1>Ordem de Serviço</h1><p>Preencha os dados e gere seu documento em PDF.</p></div><span class="status-pill">● Rascunho</span></div>
+    <form id="osForm">
+      <section class="panel">
+        <div class="panel-title"><span class="step">01</span><div><h2>Dados da empresa</h2><p>Identificação que aparecerá no documento.</p></div></div>
+        <div class="grid two">
+          <label class="upload-box" for="logoInput"><span class="upload-icon">＋</span><span><b>Enviar logo da empresa</b><small>PNG, JPG ou SVG</small></span><input type="file" id="logoInput" accept="image/*"></label>
+          <div class="fields">
+            <label>Nome / Razão social<input id="empresa" placeholder="Nome da sua empresa" required></label>
+            <label>CPF ou CNPJ<input id="empresaDoc" placeholder="000.000.000-00 ou CNPJ"></label>
+          </div>
+        </div>
+        <div class="grid three">
+          <label>Telefone / WhatsApp<input id="empresaTel" placeholder="(00) 00000-0000"></label>
+          <label>E-mail<input id="empresaEmail" type="email" placeholder="contato@empresa.com"></label>
+          <label>Responsável técnico<input id="responsavel" placeholder="Nome do responsável"></label>
+        </div>
+        <label>Endereço da empresa<input id="empresaEndereco" placeholder="Rua, número, cidade - UF"></label>
+      </section>
+      <section class="panel">
+        <div class="panel-title"><span class="step">02</span><div><h2>Dados do cliente</h2><p>Identifique o contratante do serviço.</p></div></div>
+        <div class="grid two">
+          <label>Nome / Razão social<input id="cliente" placeholder="Nome do cliente" required></label>
+          <label>CPF ou CNPJ<input id="clienteDoc" placeholder="Documento do cliente"></label>
+        </div>
+        <div class="grid three">
+          <label>Telefone<input id="clienteTel" placeholder="(00) 00000-0000"></label>
+          <label>E-mail<input id="clienteEmail" type="email" placeholder="cliente@email.com"></label>
+          <label>Endereço<input id="clienteEndereco" placeholder="Endereço do cliente"></label>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="panel-title"><span class="step">03</span><div><h2>Informações da OS</h2><p>Controle, prazo e descrição do atendimento.</p></div></div>
+        <div class="grid four">
+          <label>Número da OS<input id="numero" required></label>
+          <label>Emissão<input id="data" type="date" required></label>
+          <label>Previsão de conclusão<input id="previsao" type="date"></label>
+          <label>Status<select id="status"><option>Aberta</option><option>Em andamento</option><option>Concluída</option><option>Cancelada</option></select></label>
+        </div>
+        <div class="grid two">
+          <label>Tipo de serviço<input id="tipo" placeholder="Ex.: Instalação, manutenção, reparo"></label>
+          <label>Local de execução<input id="local" placeholder="Local onde o serviço será realizado"></label>
+        </div>
+        <label>Descrição / Solicitação do cliente<textarea id="descricao" rows="3" placeholder="Descreva o problema, solicitação ou objetivo do serviço..." required></textarea></label>
+        <label>Diagnóstico / Serviço executado<textarea id="execucao" rows="3" placeholder="Diagnóstico técnico, etapas executadas e resultado..."></textarea></label>
+        <label>Observações e recomendações<textarea id="observacoes" rows="2" placeholder="Garantia, cuidados, recomendações, condições..."></textarea></label>
+      </section>
+      <section class="panel">
+        <div class="panel-title"><span class="step">04</span><div><h2>Materiais e valores</h2><p>Adicione itens, mão de obra e condições.</p></div></div>
+        <div class="table-wrap"><table id="itemsTable"><thead><tr><th>Descrição do item</th><th>Qtd.</th><th>Valor unit. (R$)</th><th>Total (R$)</th><th></th></tr></thead><tbody id="itemsBody"></tbody></table></div>
+        <button type="button" class="btn secondary add-item" id="addItem">＋ Adicionar item</button>
+        <div class="grid three">
+          <label>Mão de obra (R$)<input id="maoObra" type="number" min="0" step=".01" value="0"></label>
+          <label>Desconto (R$)<input id="desconto" type="number" min="0" step=".01" value="0"></label>
+          <label>Despesas adicionais (R$)<input id="despesas" type="number" min="0" step=".01" value="0"></label>
+        </div>
+        <div class="totals"><span>Total da ordem de serviço</span><strong id="totalDisplay">R$ 0,00</strong></div>
+        <label>Forma de pagamento / Condições<input id="pagamento" placeholder="Ex.: PIX, dinheiro, 50% entrada e 50% na entrega"></label>
+      </section>
+      <section class="panel">
+        <div class="panel-title"><span class="step">05</span><div><h2>Assinaturas e aceite</h2><p>Campos para formalização do atendimento.</p></div></div>
+        <label>Termo de aceite<textarea id="aceite" rows="2">Declaro que os serviços descritos foram realizados/solicitados e estou ciente dos valores e condições informados nesta ordem de serviço.</textarea></label>
+        <div class="grid two"><label>Nome do responsável pela empresa<input id="assinEmpresa" placeholder="Nome"></label><label>Nome do cliente / responsável<input id="assinCliente" placeholder="Nome"></label></div>
+      </section>
+      <div class="bottom-actions"><button type="button" class="btn secondary" id="clearBtn">Limpar formulário</button><button type="button" class="btn primary" id="pdfBtn2">Gerar PDF da OS ↗</button></div>
+    </form>
+  </section>
+  <aside class="preview">
+    <div class="preview-head"><div><b>Pré-visualização</b><small>Documento A4 • atualizado automaticamente</small></div><span class="live">● Ao vivo</span></div>
+    <div class="paper-wrap"><article class="paper" id="previewPaper">
+      <div class="pdf-header"><div class="pdf-logo" id="previewLogo">SUA<br>LOGO</div><div class="pdf-company"><h2 id="pEmpresa">Sua empresa</h2><p id="pEmpresaInfo">CPF/CNPJ • Telefone • E-mail</p><p id="pEmpresaEndereco"></p></div><div class="os-number"><small>ORDEM DE SERVIÇO</small><strong id="pNumero">OS-0001</strong><span id="pStatus">ABERTA</span></div></div>
+      <hr>
+      <div class="pdf-meta"><div><small>CLIENTE</small><b id="pCliente">Nome do cliente</b><span id="pClienteInfo">Documento • Telefone</span><span id="pClienteEndereco"></span></div><div><small>EMISSÃO</small><b id="pData">—</b><small>PREVISÃO</small><b id="pPrevisao">—</b></div></div>
+      <div class="pdf-section"><h3>DETALHES DO ATENDIMENTO</h3><div class="pdf-detail"><small>Tipo / Local</small><p id="pTipo">—</p></div><div class="pdf-detail"><small>Solicitação / Descrição</small><p id="pDescricao">—</p></div><div class="pdf-detail"><small>Diagnóstico / Execução</small><p id="pExecucao">—</p></div><div class="pdf-detail"><small>Observações</small><p id="pObservacoes">—</p></div></div>
+      <div class="pdf-section"><h3>MATERIAIS E VALORES</h3><table class="pdf-table"><thead><tr><th>Descrição</th><th>Qtd.</th><th>Unit.</th><th>Total</th></tr></thead><tbody id="pItems"><tr><td colspan="4">Nenhum item informado</td></tr></tbody></table><div class="pdf-sums"><div><span>Materiais</span><b id="pMateriais">R$ 0,00</b></div><div><span>Mão de obra</span><b id="pMao">R$ 0,00</b></div><div><span>Despesas</span><b id="pDespesas">R$ 0,00</b></div><div><span>Desconto</span><b id="pDesconto">R$ 0,00</b></div><div class="grand"><span>TOTAL</span><b id="pTotal">R$ 0,00</b></div></div><p class="payline"><b>Pagamento:</b> <span id="pPagamento">—</span></p></div>
+      <div class="pdf-section"><h3>ACEITE</h3><p class="accept-text" id="pAceite"></p><div class="signatures"><div><span id="pAssEmpresa">Responsável técnico</span><small>Assinatura da empresa</small></div><div><span id="pAssCliente">Cliente</span><small>Assinatura do cliente</small></div></div></div>
+      <footer class="pdf-footer"><span id="pFooter">Sua empresa • contato</span><span>Documento gerado digitalmente</span></footer>
+    </article></div>
+    <p class="preview-note">O PDF será gerado em formato A4. Confira os dados antes de baixar.</p>
+  </aside>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
