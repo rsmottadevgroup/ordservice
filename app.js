@@ -2,7 +2,8 @@ const $=id=>document.getElementById(id);
 const fields=['empresa','empresaDoc','empresaTel','empresaEmail','responsavel','empresaEndereco','cliente','clienteDoc','clienteTel','clienteEmail','clienteEndereco','numero','data','previsao','status','tipo','local','descricao','execucao','observacoes','maoObra','desconto','despesas','pagamento','aceite','assinEmpresa','assinCliente'];
 let logoData='', itemCounter=0;
 const themeToggle=$('themeToggle');
-function setTheme(theme){document.body.dataset.theme=theme;const isDark=theme==='dark';themeToggle.innerHTML=`<span aria-hidden="true">${isDark?'☀':'☾'}</span>`;themeToggle.setAttribute('aria-label',isDark?'Ativar modo claro':'Ativar modo escuro');themeToggle.title=isDark?'Ativar modo claro':'Ativar modo escuro'}
+const themeColor=$('themeColor');
+function setTheme(theme){document.body.dataset.theme=theme;const isDark=theme==='dark';themeToggle.innerHTML=`<span aria-hidden="true">${isDark?'☀':'☾'}</span>`;themeToggle.setAttribute('aria-label',isDark?'Ativar modo claro':'Ativar modo escuro');themeToggle.title=isDark?'Ativar modo claro':'Ativar modo escuro';themeColor.content=isDark?'#111820':'#ffffff'}
 setTheme(localStorage.getItem('ordserviceTheme')==='dark'?'dark':'light');
 themeToggle.addEventListener('click',()=>{const theme=document.body.dataset.theme==='dark'?'light':'dark';setTheme(theme);localStorage.setItem('ordserviceTheme',theme)});
 const money=n=>(Number(n)||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});

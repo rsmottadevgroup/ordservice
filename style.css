@@ -9,6 +9,23 @@
 .pdf-header,.pdf-meta,.pdf-detail,.pdf-table tr,.pdf-sums>div,.payline,.accept-text,.signatures,.pdf-footer{break-inside:avoid;page-break-inside:avoid}
 .pdf-detail p,.accept-text{overflow-wrap:anywhere;word-break:normal}
 
+html{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
+.layout>*{min-width:0}
+.table-wrap{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+button{touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.btn:hover{transform:none}
+.btn:active{transform:scale(.97);transition-duration:120ms}
+@media(hover:hover) and (pointer:fine){.btn:hover{transform:translateY(-1px)}}
+@media(pointer:coarse){input,select,textarea{font-size:16px}}
+@media(max-width:650px){
+ .topbar{padding-top:calc(12px + env(safe-area-inset-top,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+ .layout{padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+ .paper-wrap{width:100%;min-width:0;overscroll-behavior-x:contain}
+ .paper{width:100%;min-width:0}
+ .pdf-table{table-layout:fixed}
+ .pdf-table th,.pdf-table td{overflow-wrap:anywhere}
+}
+
 body[data-theme="dark"]{--bg:#111820;--line:#2d3946;--text:#e5edf5;--muted:#9baabd;color-scheme:dark}
 body[data-theme="dark"] .topbar,body[data-theme="dark"] .panel{background:#1b2632;border-color:#303d4b;box-shadow:none}
 body[data-theme="dark"] .secondary{background:#253241;border-color:#405062;color:#e5edf5}
